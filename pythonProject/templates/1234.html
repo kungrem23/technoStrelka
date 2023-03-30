@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>{{title}}</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Миссия Колонизации Марса</a>
+    </nav>
+</header>
+<!-- Begin page content -->
+<main role="main" class="container">
+    <h1><img src="/src/img.png">Аварийный доступ</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.username_astro.label }}<br>
+        {{ form.username_astro(class="form-control") }}<br>
+        {% for error in form.username_astro.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.password_astro.label }}<br>
+        {{ form.password_astro(class="form-control", type="password") }}<br>
+        {% for error in form.password_astro.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+</main>
+</body>
+</html>
