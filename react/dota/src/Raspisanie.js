@@ -3,9 +3,19 @@ import ReactHTMLDatalist from "react-html-datalist";
 import './App.css'
 import footmg from './verst/Assets/logo.png';
 import supicon from './verst/Assets/icon.png'
-
+import axios from 'axios';
+import Redaction from './Redaction'
 export default function Raspisanie() {
-    fetch("").then(res=>res()).then()
+   // const [get,Setget] = useState({ data: [] })
+   // const fetchBack = async () => {
+        // Ajax call to API using Axios
+       // const result = await axios.get(`${Den}?q=`);
+        // Books result
+       // Setget(result.data);
+    //}
+    const changestr = () =>{
+        window.location.assign('http://localhost:3000/second/');
+    }
   return (
     <>
     <div className="App">
@@ -14,7 +24,6 @@ export default function Raspisanie() {
   </header>
 
   <main>
-
     <div className="HeaderBtn">
       <div className="filter">
         <button className="FilterBtn">
@@ -35,7 +44,7 @@ export default function Raspisanie() {
             <img src="Assets/icon.png" alt=""/>
           </button>
         </div></div>
-      <a className="FilterText" href="redakt.html">Редактировать</a>
+      <a className="FilterText" onClick={changestr}>Редактировать</a>
     </div>
     <br/>
 

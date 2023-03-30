@@ -1,21 +1,12 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>Мой дневник</title>
-  <link href="Assets/redakt.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
-  <!--<script src="#" defer></script>-->
-</head>
-
-<body>
-  <!--header-->
-  <header>
+import React from 'react'
+import Raspisanie from './Raspisanie';
+function Redaction() {
+  return (
+    <>
+    <header>
     <h1>Редактирование</h1>
   </header>
 
-  <!--main-->
   <main>
     <div class="BlockRedakt">
 
@@ -24,27 +15,26 @@
 
         <div id="PrimerInputText">
           <pre class="BodyText" style="color: #333333; font-size: 28px; margin-bottom: 10px; padding-left: 15px">28.03.2023</pre>
-          <form action="#" method="post"><!--readonly; <div class="line" id="line"></div>-->
+          <form action="#" method="post"> 
             <p><textarea class="TextareaStyle" rows="10" cols="45" name="text" wrap="hard" placeholder="Ваше сообщение" readonly>
 8.40-10.10 ИT 402 ИЦЭ И.А.Иванов
 10.30-12.00 Ин.яз 107 ПЭ М.С.Шитова
             </textarea></p>
-            <!--<p><input type="submit" value="Отправить"></p>-->
           </form>
         </div>
-      </div><!--BigInput-->
+      </div>
 
       <div class="InputContainer">
 
         <div class="InputInfo">
-          <input id="SearchInput" placeholder="Дата" type="search">
+          <input id="SearchInput" placeholder="Дата" type="search"/>
 
           <div class="FAQ">
             <button id="SearchBtn" src="Assets/icon.png">
-              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt="">
+              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt=""/>
             </button>
             <div class="VariantsBtn">
-              <button> <!--style="padding-right: 100px"-->
+              <button>
                 <pre class="BodyText">13.01.23</pre>
               </button>
               <button>
@@ -53,20 +43,20 @@
               <button>
                 <pre class="BodyText">02.05.23</pre>
               </button>
-            </div><!--варианты-->
-          </div><!--список предложенных вариантов-->
+            </div>
+          </div>
 
-        </div><!--ДАТА: поле для ввода и выборка вариантов-->
+        </div>
 
         <div class="InputInfo">
-          <input id="SearchInput" placeholder="Название предмета" type="search">
+          <input id="SearchInput" placeholder="Название предмета" type="search"/>
 
           <div class="FAQ">
             <button id="SearchBtn" src="Assets/icon.png">
-              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt="">
+              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt=""/>
             </button>
             <div class="VariantsBtn">
-              <button> <!--style="padding-right: 100px"-->
+              <button> 
                 <pre class="BodyText">Ин.яз</pre>
               </button>
               <button>
@@ -75,20 +65,20 @@
               <button>
                 <pre class="BodyText">Мат.анализ</pre>
               </button>
-            </div><!--варианты-->
-          </div><!--список предложенных вариантов-->
+            </div>
+          </div>
 
-        </div><!--НАЗВАНИЕ ПРЕДМЕТА: поле для ввода и выборка вариантов-->
+        </div>
 
         <div class="InputInfo">
-          <input id="SearchInput" placeholder="Аудитория" type="search">
+          <input id="SearchInput" placeholder="Аудитория" type="search"/>
 
           <div class="FAQ">
             <button id="SearchBtn" src="Assets/icon.png">
-              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt="">
+              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt=""/>
             </button>
             <div class="VariantsBtn">
-              <button> <!--style="padding-right: 100px"-->
+              <button> 
                 <pre class="BodyText">202</pre>
               </button>
               <button>
@@ -97,20 +87,20 @@
               <button>
                 <pre class="BodyText">415</pre>
               </button>
-            </div><!--варианты-->
-          </div><!--список предложенных вариантов-->
+            </div>
+          </div>
 
-        </div><!--АУДИТОРИЯ: поле для ввода и выборка вариантов-->
+        </div>
 
         <div class="InputInfo">
-          <input id="SearchInput" placeholder="Преподаватель" type="search">
+          <input id="SearchInput" placeholder="Преподаватель" type="search"/>
 
           <div class="FAQ">
             <button id="SearchBtn" src="Assets/icon.png">
-              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt="">
+              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt=""/>
             </button>
             <div class="VariantsBtn">
-              <button> <!--style="padding-right: 100px"-->
+              <button>
                 <pre class="BodyText">А.И.Куприн</pre>
               </button>
               <button>
@@ -119,20 +109,20 @@
               <button>
                 <pre class="BodyText">Л.Н.Толстой</pre>
               </button>
-            </div><!--варианты-->
-          </div><!--список предложенных вариантов-->
+            </div>
+          </div>
 
-        </div><!--ПРЕПОДАВАТЕЛЬ: поле для ввода и выборка вариантов-->
+        </div>
 
         <div class="InputInfo">
-          <input id="SearchInput" placeholder="Группа" type="search">
+          <input id="SearchInput" placeholder="Группа" type="search"/>
 
           <div class="FAQ">
             <button id="SearchBtn" src="Assets/icon.png">
-              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt="">
+              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt=""/>
             </button>
             <div class="VariantsBtn">
-              <button> <!--style="padding-right: 100px"-->
+              <button> 
                 <pre class="BodyText">ИН</pre>
               </button>
               <button>
@@ -141,20 +131,20 @@
               <button>
                 <pre class="BodyText">ПЭ</pre>
               </button>
-            </div><!--варианты-->
-          </div><!--список предложенных вариантов-->
+            </div>
+          </div>
 
-        </div><!--ГРУППА: поле для ввода и выборка вариантов-->
+        </div>
 
         <div class="InputInfo">
-          <input id="SearchInput" placeholder="Время" type="search">
+          <input id="SearchInput" placeholder="Время" type="search"/>
 
           <div class="FAQ">
             <button id="SearchBtn" src="Assets/icon.png">
-              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt="">
+              <img style="margin-top: -5px; margin-left: -13px" src="Assets/iconWhite.png" alt=""/>
             </button>
             <div class="VariantsBtn">
-              <button> <!--style="padding-right: 100px"-->
+              <button> 
                 <pre class="BodyText">8.40-10.10</pre>
               </button>
               <button>
@@ -163,16 +153,15 @@
               <button>
                 <pre class="BodyText">12.20-13.50</pre>
               </button>
-            </div><!--варианты-->
-          </div><!--список предложенных вариантов-->
+            </div>
+          </div>
 
-        </div><!--ДАТА: поле для ввода и выборка вариантов-->
+        </div>
 
-      </div><!--таблица с полями для ввода-->
+      </div>
 
-    </div><!--блок для редакции-->
+    </div>
 
-    <!--кнопки id="DownBtnText"-->
     <div class="DownBtn">
       <button style="padding: 5px 70px">
         <pre id="DownBtnText">Сохранить</pre>
@@ -188,7 +177,7 @@
 
   <footer>
     <div id="FooterInfo">
-      <img src="Assets/logo.png" alt="">
+      <img src="Assets/logo.png" alt=""/>
       <div id="FooterText">
         <h1 id="FooterText">О команде</h1>
         <pre id="FooterText" style="font-size: 16px">Дарья – верстальщик
@@ -199,5 +188,6 @@
       <h2 id="FooterText">До встречи в Нижнем!</h2>
     </div>
   </footer>
-</body>
-</html>
+  </>
+  )
+}
