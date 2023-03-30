@@ -1,6 +1,210 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
 }
-.main{
+
+/*----------header----------*/
+
+header{
+  width: 100%;
+  height: 320px;
+  margin: 0;
+  margin-top: -1px;
+  padding: 0;
+  /*background-color: #333333;*/
+  background-image: url("./verst/Assets/header.png");
+  background-repeat: no-repeat;
+}
+
+/*----------body----------*/
+
+body{
+  background-color: #F15622;
+}
+
+.BodyText{
+  font-family: 'Comic Neue', cursive;
+  font-weight: 400;
+  font-style: normal;
+font-size: 36px;
+color: #333333;
+}
+
+/*----------main----------*/
+
+main{
+  padding: 10px 136px 55px; /*top-bottom rt-lt*/
+}
+
+/*кнопка для перехода на стр Редактирование*/
+
+.HeaderBtn{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.HeaderBtn a{
+  background-color: white;
+  color: #333333;
+
+  height: 55px;
+
+  padding: 7px 8px 5px 15px; /*сверху справа снизу слева*/
+  margin-top: -2px;
+
+  border: none;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  border-radius: 22px;
+}
+
+.HeaderBtn a:hover{
+  background-color: #333333;
+  color: white;
+  border: 3px solid white;
+}
+
+/*filter*/
+
+.filter{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  padding-bottom: 10px;
+}
+
+.FilterBtn{
+  background-color: white;
+  color: #333333;
+
+  height: 65px;
+
+  padding: 5px 5px 5px 10px; /*сверху справа снизу слева*/
+  border: none;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+}
+
+.FilterBtn:hover{
+  background-color: #333333;
+  color: white;
+  border: 3px solid white;
+}
+
+.FilterText{
+  font-family: 'Comic Neue', cursive;
+  font-weight: 400;
+  font-style: normal;
+font-size: 36px;
+}
+
+.VariantsBtn{
+  display: none;
+  position: absolute;
+  min-width: 250px;
+  z-index: 1;
+}
+
+.VariantsBtn button{
+  margin-top: 2px;
+  padding-left: 10px;
+
+  background-color: white;
+  color: #333333;
+
+  border-radius: 22px;
+  height: 65px;
+  border: 3px solid #333333;
+  text-decoration: none;
+
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.VariantsBtn button:hover {
+  background-color: #333333;
+  color: white;
+  border: 3px solid white;
+}
+
+.filter:hover .VariantsBtn {
   display: block;
+}
+
+.filter:hover .FilterBtn {
+  background-color: #333333;
+  color: white;
+  border: 3px solid white;
+}
+
+/*расписание*/
+
+.container{
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+
+  background-color: #F15622;
+}
+
+.WeekDay{
+display: flex;
+  flex-flow: row;
+  align-items: center;
+
+height: 80px;
+border: none;
+border-radius: 25px;
+background-color: white;
+color: #333333;
+
+padding-right: 36.6%;
+padding-left: 1%;
+margin: 10px 0;
+}
+
+.pairs{
+  display: flex;
+  flex-flow: column;
+
+  border-radius: 25px;
+  height: 75px;
+
+  padding-left: 1%;
+  padding-top: 20px;
+  margin: 10px 0 10px 120px;
+
+  background-color: white;
+  color: #333333;
+}
+
+/*----------Footer----------*/
+
+footer{
+  background-color: #292929;
+  height: 180px;
+  width: 100%;
+  padding: 30px 100px;
+}
+.FooterText{
+  font-family: 'Comic Neue', cursive;
+  font-weight: 400;
+  font-style: normal;
+font-size: 36px;
+color: white;
+}
+.FooterInfo{
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row;
 }

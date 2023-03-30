@@ -1,76 +1,129 @@
 import React, { useState } from "react";
 import ReactHTMLDatalist from "react-html-datalist";
-
+import './App.css'
 const App = () => {
-  const [detail, setDetail] = useState({ time: "" });
-
-  const handleChange = e => {
-    setDetail({ ...detail, [e.target.name]: e.target.value });
-  };
 
   return (
     <>
     <div className="App">
-      <small>Выбери время: </small>
-      <ReactHTMLDatalist
-            name={"time"}
-            onChange={handleChange}
-            options={[
-              { text: "6PM", value: "1" },
-              { text: "3PM", value: "2" },
-              { text: "1PM", value: "3" },
-              { text: "5PM", value: "4" }
-            ]}
-      />
+    <header>
+    <img src="./header.png" alt=""/>
+  </header>
+
+  <main>
+
+    <div className="HeaderBtn">
+      <div className="filter">
+        <button className="FilterBtn">
+          <pre className="FilterText">Фильтр</pre>
+          <img src="Assets/icon.png" alt=""/>
+        </button>
+        <div className="VariantsBtn">
+          <button> 
+            <pre className="FilterText">ИВТ</pre>
+            <img src="Assets/icon.png" alt=""/>
+          </button>
+          <button>
+            <pre className="FilterText">Экономический</pre>
+            <img src="Assets/icon.png" alt=""/>
+          </button>
+          <button>
+            <pre className="FilterText">Бизнес-аналитика</pre>
+            <img src="Assets/icon.png" alt=""/>
+          </button>
+        </div></div>
+      <a className="FilterText" href="redakt.html">Редактировать</a>
     </div>
-    <small>Выбери аудиторию: </small>
-      <ReactHTMLDatalist
-            name={"audit"}
-            onChange={handleChange}
-            classNames={"classone classtwo"}
-            options={[
-              { text: "333", value: "1" },
-              { text: "312", value: "2" },
-              { text: "416", value: "3" },
-              { text: "66", value: "4" }
-            ]}
-      />
-      <small>Преподаватель: </small>
-      <ReactHTMLDatalist
-            name={"teach"}
-            onChange={handleChange}
-            classNames={"classone classtwo"}
-            options={[
-              { text: "Иванов", value: "1" },
-              { text: "Титов", value: "2" },
-              { text: "Старый", value: "3" },
-              { text: "Михалыч", value: "4" }
-            ]}
-      />
-      <small>Выбери название предмета: </small>
-      <ReactHTMLDatalist
-            name={"subj"}
-            onChange={handleChange}
-            classNames={"classone classtwo"}
-            options={[
-              { text: "Технология", value: "1" },
-              { text: "Химия", value: "2" },
-              { text: "Русский", value: "3" },
-              { text: "НЕрусский", value: "4" }
-            ]}
-      />
-      <small>Выбери группу: </small>
-      <ReactHTMLDatalist
-            name={"group"}
-            onChange={handleChange}
-            classNames={"classone classtwo"}
-            options={[
-              { text: "Умственно отсталые", value: "1" },
-              { text: "НЕрусские", value: "2" },
-              { text: "Кадеты", value: "3" },
-              { text: "Школота", value: "4" }
-            ]}
-      />
+    <br/>
+
+    <div className="container">
+
+      <button className="WeekDay" /*</div>onclick="(document.getElementById('list1').style.display='block')"*/>
+        <pre className="BodyText">Понедельник</pre>
+        <img src="./verst/Assets/icon.png" alt=""/>
+      </button>
+      <div className="list1" class="BodyText" /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+      <button className="WeekDay" /*onclick="(document.getElementById('list2').style.display='block')"*/>
+        <pre className="BodyText">Вторник</pre>
+        <img src="Assets/icon.png" alt=""/>
+      </button>
+      <div className="list2" /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+      <button className="WeekDay" /*onClick="(document.getElementById('list3').style.display='block')"*/>
+        <pre className="BodyText">Среда</pre>
+        <img src="Assets/icon.png" alt=""/>
+      </button>
+      <div className="list3" class="BodyText" /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">14.10-15.40 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+      <button className="WeekDay" /*onclick="(document.getElementById('list4').style.display='block')"*/>
+        <pre className="BodyText">Четверг</pre>
+        <img src="Assets/icon.png" alt=""/>
+      </button>
+      <div className="list4"  /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+      </div>
+
+      <button className="WeekDay" /*onclick="(document.getElementById('list5').style.display='block')"*/>
+        <pre className="BodyText">Пятница</pre>
+        <img src="Assets/icon.png" alt=""/>
+      </button>
+      <div className="list5"  /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div className="FooterInfo">
+      <img src="Assets/logo.png" alt=""/>
+      <div className="FooterText">
+        <h1 className="FooterText">О команде</h1>
+        <pre className="FooterText" /*style="font-size: 16px"*/>Дарья – верстальщик
+Софья – дизайнер
+Данил – backend программист
+Роман – frontend программист</pre>
+      </div>
+      <h2 className="FooterText">До встречи в Нижнем!</h2>
+    </div>
+  </footer>
+    </div>
     </>
   );
 };
