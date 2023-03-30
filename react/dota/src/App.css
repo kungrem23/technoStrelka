@@ -200,11 +200,11 @@ footer{
   font-family: 'Comic Neue', cursive;
   font-weight: 400;
   font-style: normal;
-font-size: 36px;
+font-size: 16px;
 color: white;
+display: flex;
 }
 .FooterInfo{
   display: flex;
   justify-content: space-around;
-  flex-flow: row;
 }
