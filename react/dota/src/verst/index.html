@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Мой дневник</title>
+  <link href="Assets/index.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+  <!--<script src="#" defer></script>-->
+</head>
+<body>
+
+  <!--header-->
+  <header>
+    <img src="Assets/Header.png" alt="">
+  </header>
+
+  <!--main-->
+  <main>
+
+    <!--кнопки фильтр и редатировать-->
+    <div class="HeaderBtn">
+
+      <!--фильтр-->
+      <div class="filter">
+        <button class="FilterBtn">
+          <pre id="FilterText">Фильтр</pre>
+          <img src="Assets/icon.png" alt="">
+        </button>
+        <div class="VariantsBtn">
+          <button> <!--style="padding-right: 100px"-->
+            <pre id="FilterText">ИВТ</pre>
+            <img src="Assets/icon.png" alt="">
+          </button>
+          <button>
+            <pre id="FilterText">Экономический</pre>
+            <img src="Assets/icon.png" alt="">
+          </button>
+          <button>
+            <pre id="FilterText">Бизнес-аналитика</pre>
+            <img src="Assets/icon.png" alt="">
+          </button>
+        </div><!--варианты фильтра-->
+      </div><!--фильтр-->
+
+      <!--переход на стр Редактирование-->
+      <a id="FilterText" href="redakt.html">Редактировать</a>
+    </div>
+    <br>
+
+    <!--Расписание-->
+    <div class="container">
+
+      <!--Понедельник-->
+      <button id="WeekDay" onclick="(document.getElementById('list1').style.display='block')">
+        <pre class="BodyText">Понедельник</pre>
+        <img src="Assets/icon.png" alt="">
+      </button>
+      <div id="list1" class="BodyText" style="display:none;">
+        <div class="pairs">
+          <pre class="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div class="pairs" style="margin-top: 20px">
+          <pre class="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+      <!--Вторник-->
+      <button id="WeekDay" onclick="(document.getElementById('list2').style.display='block')">
+        <pre class="BodyText">Вторник</pre>
+        <img src="Assets/icon.png" alt="">
+      </button>
+      <div id="list2" class="BodyText" style="display:none;">
+        <div class="pairs">
+          <pre class="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div class="pairs" style="margin-top: 20px">
+          <pre class="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+      <!--Среда-->
+      <button id="WeekDay" onclick="(document.getElementById('list3').style.display='block')">
+        <pre class="BodyText">Среда</pre>
+        <img src="Assets/icon.png" alt="">
+      </button>
+      <div id="list3" class="BodyText" style="display:none;">
+        <div class="pairs">
+          <pre class="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
+        </div>
+        <div class="pairs" style="margin-top: 20px">
+          <pre class="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div class="pairs" style="margin-top: 20px">
+          <pre class="BodyText">14.10-15.40 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+      <!--Четверг-->
+      <button id="WeekDay" onclick="(document.getElementById('list4').style.display='block')">
+        <pre class="BodyText">Четверг</pre>
+        <img src="Assets/icon.png" alt="">
+      </button>
+      <div id="list4" class="BodyText" style="display:none;">
+        <div class="pairs">
+          <pre class="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
+        </div>
+        <div class="pairs" style="margin-top: 20px">
+          <pre class="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+      </div>
+
+      <!--Пятница-->
+      <button id="WeekDay" onclick="(document.getElementById('list5').style.display='block')">
+        <pre class="BodyText">Пятница</pre>
+        <img src="Assets/icon.png" alt="">
+      </button>
+      <div id="list5" class="BodyText" style="display:none;">
+        <div class="pairs">
+          <pre class="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div class="pairs" style="margin-top: 20px">
+          <pre class="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>
+
+    </div><!--container-->
+
+  </main>
+
+  <!--Подвал-->
+  <footer>
+    <div id="FooterInfo">
+      <img src="Assets/logo.png" alt="">
+      <div id="FooterText">
+        <h1 id="FooterText">О команде</h1>
+        <pre id="FooterText" style="font-size: 16px">Дарья – верстальщик
+Софья – дизайнер
+Данил – backend программист
+Роман – frontend программист</pre>
+      </div>
+      <h2 id="FooterText">До встречи в Нижнем!</h2>
+    </div>
+  </footer>
+</body>
+</html>

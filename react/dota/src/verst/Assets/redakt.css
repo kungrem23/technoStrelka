@@ -1,0 +1,283 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*----------header----------*/
+
+header{
+    width: 100%;
+    height: 150px;
+
+    margin: 0;
+    margin-top: -15px;
+    padding-left: 100px;
+
+    background-color: #292929;
+    color: white;
+
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 48px;
+}
+
+/*----------body----------*/
+
+body{
+    background-color: #F15622;
+}
+
+.BodyText{
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 36px;
+}
+
+/*----------main----------*/
+
+main{
+    padding: 10px 136px 55px; /*top-bottom rt-lt*/
+}
+
+.BlockRedakt{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+}
+
+/*BigPole*/
+
+.BigInput{
+    display: flex;
+    flex-flow: column;
+}
+
+#PrimerInputText{
+    background-color: white;
+    border: none;
+    border-radius: 22px;
+
+    display: flex;
+    flex-flow: column;
+
+    width: 400px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.TextareaStyle{
+    border: none;
+    width: 380px;
+    height: 350px;
+
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 18px;
+	color: #333333;
+
+	padding-left: 10px;
+}
+
+.TextareaStyle :hover{
+    border: none;
+}
+
+/*#line{
+    width: 40px;
+    margin: 0 10px;
+}
+
+.line{
+    border-bottom: 2px solid grey;
+}*/
+
+/*поля ввода right*/
+
+.InputContainer{
+    display: flex;
+    flex-flow: column;
+
+    margin-top: 10px;
+}
+
+.InputInfo{
+    display: flex;
+    margin-bottom: 10px;
+    flex-flow: row;
+}
+
+.InputInfo button{
+    border: none;
+    background-color: white;
+    margin-top: 7px;
+}
+
+.InputInfo button:hover{
+    border: none;
+    background-color: #333333;
+}
+
+#SearchInput{
+    width: 600px;
+    height: 65px;
+
+    padding: 0 10px;
+
+    font-size: 36px;
+    font-family: 'Comic Neue', cursive;
+
+    border-radius: 25px;
+    border: none;
+}
+
+#SearchBtn{
+    height: 30px;
+    width: 32px;
+    right: 40px;
+    top: 10px;
+
+    position: relative;
+}
+
+input[type="search"]::-ms-clear {
+    display: none;
+}
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+
+.FAQ{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+
+    padding-bottom: 10px;
+}
+
+.VariantsBtn{
+    display: none;
+    position: absolute;
+    min-width: 250px;
+    z-index: 1;
+
+    margin-left: -80px;
+}
+
+.VariantsBtn button{
+    margin-top: 2px;
+    padding: 0 10px;
+
+    background-color: white;
+    color: #333333;
+
+    border-radius: 22px;
+    height: 65px;
+    border: 3px solid #333333;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+}
+
+.VariantsBtn button:hover {
+    background-color: #333333;
+    color: white;
+    border: 3px solid white;
+}
+
+.FAQ:hover .VariantsBtn {
+    display: block;
+}
+
+.FAQ:hover .InputInfo button {
+    background-color: #333333;
+    color: white;
+    border: 3px solid white;
+}
+
+/*кнопки*/
+
+.DownBtn{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row;
+
+    margin-top: 90px;
+}
+
+.DownBtn button{
+	color: #333333;
+	background-color: white;
+
+	border: none;
+	border-radius: 22px;
+	text-decoration: none;
+
+	height: 90px;
+
+	padding: 5px 40px;
+
+	display: flex;
+	align-items: center;
+	flex-flow: column;
+}
+
+.DownBtn button:hover{
+    color: white;
+	background-color: #333333;
+	border: 3px solid white;
+}
+
+.DownBtn a{
+	color: #333333;
+	background-color: white;
+
+	border: none;
+	border-radius: 22px;
+	text-decoration: none;
+
+	height: 80px;
+
+	padding: 5px 30px;
+
+	display: flex;
+	align-items: center;
+	flex-flow: column;
+}
+
+.DownBtn a:hover{
+    color: white;
+	background-color: #333333;
+	border: 3px solid white;
+}
+
+#DownBtnText{
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 28px;
+}
+
+/*----------Footer----------*/
+
+footer{
+    background-color: #292929;
+    height: 180px;
+    width: 100%;
+    padding: 30px 100px;
+}
+#FooterText{
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 36px;
+	color: white;
+}
+#FooterInfo{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row;
+}
