@@ -50,7 +50,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 db_session.global_init('db/pares.db')
-# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/get_pares": {"origins": "*"}})
 
 
 @login_manager.user_loader
@@ -83,59 +83,59 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def reqister():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
-                                   form=form,
-                                   message="Пароли не совпадают")
-        db_sess = db_session.create_session()
-        if db_sess.query(User).filter(User.email == form.email.data).first():
-            return render_template('register.html', title='Регистрация',
-                                   form=form,
-                                   message="Такой пользователь уже есть")
-        user = User(
-            name=form.name.data,
-            email=form.email.data,
-            # about=form.about.data
-        )
-        for i in db_sess.query(User).all():
-            print(i)
-        user.set_password(form.password.data)
-        db_sess.add(user)
-        db_sess.commit()
-        return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form)
+# @app.route('/register', methods=['GET', 'POST'])
+# def reqister():
+#     form = RegisterForm()
+#     if form.validate_on_submit():
+#         if form.password.data != form.password_again.data:
+#             return render_template('register.html', title='Регистрация',
+#                                    form=form,
+#                                    message="Пароли не совпадают")
+#         db_sess = db_session.create_session()
+#         if db_sess.query(User).filter(User.email == form.email.data).first():
+#             return render_template('register.html', title='Регистрация',
+#                                    form=form,
+#                                    message="Такой пользователь уже есть")
+#         user = User(
+#             name=form.name.data,
+#             email=form.email.data,
+#             # about=form.about.data
+#         )
+#         for i in db_sess.query(User).all():
+#             print(i)
+#         user.set_password(form.password.data)
+#         db_sess.add(user)
+#         db_sess.commit()
+#         return redirect('/login')
+#     return render_template('register.html', title='Регистрация', form=form)
 
-@app.route("/")
-def index():
-    db_sess = db_session.create_session()
-    news = db_sess.query(News).filter(News.is_private != True)
-    if current_user.is_authenticated:
-        news = db_sess.query(News).filter(
-            (News.user == current_user) | (News.is_private != True))
-    else:
-        news = db_sess.query(News).filter(News.is_private != True)
-    return render_template("index.html", news=news, position=current_user.position)
-
-@app.route('/news',  methods=['GET', 'POST'])
-@login_required
-def add_news():
-    form = NewsForm()
-    if form.validate_on_submit():
-        db_sess = db_session.create_session()
-        news = News()
-        news.title = form.title.data
-        news.content = form.content.data
-        news.is_private = form.is_private.data
-        current_user.news.append(news)
-        db_sess.merge(current_user)
-        db_sess.commit()
-        return redirect('/')
-    return render_template('news.html', title='Добавление новости',
-                           form=form)
+# @app.route("/")
+# def index():
+#     db_sess = db_session.create_session()
+#     news = db_sess.query(News).filter(News.is_private != True)
+#     if current_user.is_authenticated:
+#         news = db_sess.query(News).filter(
+#             (News.user == current_user) | (News.is_private != True))
+#     else:
+#         news = db_sess.query(News).filter(News.is_private != True)
+#     return render_template("index.html", news=news, position=current_user.position)
+#
+# @app.route('/news',  methods=['GET', 'POST'])
+# @login_required
+# def add_news():
+#     form = NewsForm()
+#     if form.validate_on_submit():
+#         db_sess = db_session.create_session()
+#         news = News()
+#         news.title = form.title.data
+#         news.content = form.content.data
+#         news.is_private = form.is_private.data
+#         current_user.news.append(news)
+#         db_sess.merge(current_user)
+#         db_sess.commit()
+#         return redirect('/')
+#     return render_template('news.html', title='Добавление новости',
+#                            form=form)
 
 
 def main():
