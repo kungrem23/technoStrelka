@@ -14,8 +14,10 @@ export default function Raspisanie() {
        // Setget(result.data);
     //}
     const changestr = () =>{
-        window.location.assign('http://localhost:3000/second/');
-    }
+       // window.location.href('http://localhost:3000/Redaction/');
+    console.log("en")
+    
+      }
   return (
     <>
     <div className="App">
@@ -44,7 +46,7 @@ export default function Raspisanie() {
             <img src="Assets/icon.png" alt=""/>
           </button>
         </div></div>
-      <a className="FilterText" onClick={changestr}>Редактировать</a>
+      <a className="FilterText" onClick={changestr} >Редактировать</a>
     </div>
     <br/>
 
