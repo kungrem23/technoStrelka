@@ -1,131 +1,177 @@
-# импортируем библиотеки
-from flask import Flask, request, jsonify
-import logging
+from flask import Flask, redirect, render_template, jsonify
+from data import db_session
+from data.users import User
+from data.jobs import Jobs
+from data.news import News
+from data.pare import Pares
+from data.news_form import NewsForm
+from data.test_table import testClass
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_wtf import FlaskForm
+from wtforms import EmailField, PasswordField, SubmitField, BooleanField, \
+    StringField, TextAreaField, DateField, IntegerField, TimeField
+from wtforms.validators import DataRequired
+from flask_cors import CORS
+import json
+from werkzeug.security import generate_password_hash, check_password_hash
+# from forms.user import RegisterForm
+import datetime
 
-# создаём приложение
-# мы передаём __name__, в нём содержится информация,
-# в каком модуле мы находимся.
-# В данном случае там содержится '__main__',
-# так как мы обращаемся к переменной из запущенного модуля.
-# если бы такое обращение, например, произошло внутри модуля logging,
-# то мы бы получили 'logging'
+
+class RegisterForm(FlaskForm):
+    email = EmailField('Почта', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
+    name = StringField('Имя пользователя', validators=[DataRequired()])
+    about = TextAreaField("Немного о себе")
+    submit = SubmitField('Войти')
+
+
+class LoginForm(FlaskForm):
+    email = EmailField('Почта', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    remember_me = BooleanField('Запомнить меня')
+    submit = SubmitField('Войти')
+
+
+class PareForm(FlaskForm):
+    datePare = DateField('Дата пары', validators=[DataRequired()])
+    lessonName = StringField('Название предмета', validators=[DataRequired()])
+    auditorium = IntegerField('Аудитория', validators=[DataRequired()])
+    teacher = StringField('Преподователь', validators=[DataRequired()])
+    group = StringField('Группа', validators=[DataRequired()])
+    timePare = TimeField('Время пары', validators=[DataRequired()])
+
+
+
+
 app = Flask(__name__)
-
-# Устанавливаем уровень логирования
-logging.basicConfig(level=logging.INFO)
-
-# Создадим словарь, чтобы для каждой сессии общения
-# с навыком хранились подсказки, которые видел пользователь.
-# Это поможет нам немного разнообразить подсказки ответов
-# (buttons в JSON ответа).
-# Когда новый пользователь напишет нашему навыку,
-# то мы сохраним в этот словарь запись формата
-# sessionStorage[user_id] = {'suggests': ["Не хочу.", "Не буду.", "Отстань!" ]}
-# Такая запись говорит, что мы показали пользователю эти три подсказки.
-# Когда он откажется купить слона,
-# то мы уберем одну подсказку. Как будто что-то меняется :)
-sessionStorage = {}
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+login_manager = LoginManager()
+login_manager.init_app(app)
+db_session.global_init('db/pares.db')
+# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-# Функция получает тело запроса и возвращает ответ.
-# Внутри функции доступен request.json - это JSON,
-# который отправила нам Алиса в запросе POST
-@app.route('/post', methods=['POST'])
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
+
+@app.route('/get_pares', methods=['GET'])
+def get_pares():
+    db_sess = db_session.create_session()
+    resp = []
+    for i in db_sess.query(Pares).all():
+        resp.append(i.get_dict())
+    # return json.dumps(resp, indent=4)
+    return jsonify(resp)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.email == form.email.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            return redirect("/")
+        return render_template('login.html',
+                               message="Неправильный логин или пароль",
+                               form=form)
+    return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def reqister():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        if form.password.data != form.password_again.data:
+            return render_template('register.html', title='Регистрация',
+                                   form=form,
+                                   message="Пароли не совпадают")
+        db_sess = db_session.create_session()
+        if db_sess.query(User).filter(User.email == form.email.data).first():
+            return render_template('register.html', title='Регистрация',
+                                   form=form,
+                                   message="Такой пользователь уже есть")
+        user = User(
+            name=form.name.data,
+            email=form.email.data,
+            # about=form.about.data
+        )
+        for i in db_sess.query(User).all():
+            print(i)
+        user.set_password(form.password.data)
+        db_sess.add(user)
+        db_sess.commit()
+        return redirect('/login')
+    return render_template('register.html', title='Регистрация', form=form)
+
+@app.route("/")
+def index():
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.is_private != True)
+    if current_user.is_authenticated:
+        news = db_sess.query(News).filter(
+            (News.user == current_user) | (News.is_private != True))
+    else:
+        news = db_sess.query(News).filter(News.is_private != True)
+    return render_template("index.html", news=news, position=current_user.position)
+
+@app.route('/news',  methods=['GET', 'POST'])
+@login_required
+def add_news():
+    form = NewsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = News()
+        news.title = form.title.data
+        news.content = form.content.data
+        news.is_private = form.is_private.data
+        current_user.news.append(news)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('news.html', title='Добавление новости',
+                           form=form)
+
+
 def main():
-    logging.info(f'Request: {request.json!r}')
+    # db_session.global_init(input())
+    # db_sess = db_session.create_session()
+    # for i in db_sess.query(User).all():
+    #     print('<Colonist>', i.id, i.surname, i.name)
+    app.run(port=8080, host='127.0.0.1')
 
-    # Начинаем формировать ответ, согласно документации
-    # мы собираем словарь, который потом отдадим Алисе
-    response = {
-        'session': request.json['session'],
-        'version': request.json['version'],
-        'response': {
-            'end_session': False
-        }
-    }
-
-    # Отправляем request.json и response в функцию handle_dialog.
-    # Она сформирует оставшиеся поля JSON, которые отвечают
-    # непосредственно за ведение диалога
-    handle_dialog(request.json, response)
-
-    logging.info(f'Response:  {response!r}')
-
-    # Преобразовываем в JSON и возвращаем
-    return jsonify(response)
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/login")
 
 
-def handle_dialog(req, res):
-    user_id = req['session']['user_id']
+# if __name__ == '__main__':
+#     main()
 
-    if req['session']['new']:
-        # Это новый пользователь.
-        # Инициализируем сессию и поприветствуем его.
-        # Запишем подсказки, которые мы ему покажем в первый раз
+# db_session.global_init('db/pares.db')
+user = User(
+    login = 'zxcghoul'
+)
+user.set_password('12345678')
+pare = Pares(
+    datePare=datetime.date.today(),
+    lessonName='infa',
+    auditorium=456,
+    teacher='zubenko mikhail petrovich',
+    group='it u 22',
+    timePare='15:45-17:15'
+)
 
-        sessionStorage[user_id] = {
-            'suggests': [
-                "Не хочу.",
-                "Не буду.",
-                "Отстань!",
-            ]
-        }
-        # Заполняем текст ответа
-        res['response']['text'] = 'Привет! Купи слона!'
-        # Получим подсказки
-        res['response']['buttons'] = get_suggests(user_id)
-        return
-
-    # Сюда дойдем только, если пользователь не новый,
-    # и разговор с Алисой уже был начат
-    # Обрабатываем ответ пользователя.
-    # В req['request']['original_utterance'] лежит весь текст,
-    # что нам прислал пользователь
-    # Если он написал 'ладно', 'куплю', 'покупаю', 'хорошо',
-    # то мы считаем, что пользователь согласился.
-    # Подумайте, всё ли в этом фрагменте написано "красиво"?
-    if req['request']['original_utterance'].lower() in [
-        'ладно',
-        'куплю',
-        'покупаю',
-        'хорошо'
-    ]:
-        # Пользователь согласился, прощаемся.
-        res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
-        res['response']['end_session'] = True
-        return
-
-    # Если нет, то убеждаем его купить слона!
-    res['response']['text'] = \
-        f"Все говорят '{req['request']['original_utterance']}', а ты купи слона!"
-    res['response']['buttons'] = get_suggests(user_id)
-
-
-# Функция возвращает две подсказки для ответа.
-def get_suggests(user_id):
-    session = sessionStorage[user_id]
-
-    # Выбираем две первые подсказки из массива.
-    suggests = [
-        {'title': suggest, 'hide': True}
-        for suggest in session['suggests'][:2]
-    ]
-
-    # Убираем первую подсказку, чтобы подсказки менялись каждый раз.
-    session['suggests'] = session['suggests'][1:]
-    sessionStorage[user_id] = session
-
-    # Если осталась только одна подсказка, предлагаем подсказку
-    # со ссылкой на Яндекс.Маркет.
-    if len(suggests) < 2:
-        suggests.append({
-            "title": "Ладно",
-            "url": "https://market.yandex.ru/search?text=слон",
-            "hide": True
-        })
-
-    return suggests
-
-
-if __name__ == '__main__':
-    app.run()
+db_sess = db_session.create_session()
+# db_sess.add(user)
+db_sess.add(pare)
+db_sess.commit()
+for i in db_sess.query(testClass).all():
+    print(i)
