@@ -1,6 +1,6 @@
 import React from 'react'
 import Raspisanie from './Raspisanie';
-import { BrowserRouter,Routes,  Route} from "react-router-dom";
+import { BrowserRouter,Routes,  Route, Link} from "react-router-dom";
 import './Redaction.css'
 import iconWhite from './verst/Assets/iconWhite.png';
 import logo from './verst/Assets/logo.png'
@@ -173,10 +173,10 @@ import icon from './verst/Assets/icon.png'
         <pre className="DownBtnText">Сохранить</pre>
         <pre className="DownBtnText">изменения</pre>
       </button>
-      <a href="index.html">
+      <Link to="/">
         <pre className="DownBtnText">Перейти на</pre>
         <pre className="DownBtnText">главную страницу</pre>
-      </a>
+      </Link>
     </div>
 
   </main>
