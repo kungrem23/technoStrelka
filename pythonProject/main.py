@@ -152,26 +152,26 @@ def logout():
     return redirect("/login")
 
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
 
 # db_session.global_init('db/pares.db')
-user = User(
-    login = 'zxcghoul'
-)
-user.set_password('12345678')
-pare = Pares(
-    datePare=datetime.date.today(),
-    lessonName='infa',
-    auditorium=456,
-    teacher='zubenko mikhail petrovich',
-    group='it u 22',
-    timePare='15:45-17:15'
-)
+# user = User(
+#     login = 'zxcghoul'
+# )
+# user.set_password('12345678')
+# pare = Pares(
+#     datePare=datetime.date.today(),
+#     lessonName='infa',
+#     auditorium=456,
+#     teacher='zubenko mikhail petrovich',
+#     group='it u 22',
+#     timePare='15:45-17:15'
+# )
 
-db_sess = db_session.create_session()
-# db_sess.add(user)
-db_sess.add(pare)
-db_sess.commit()
-for i in db_sess.query(testClass).all():
-    print(i)
+# db_sess = db_session.create_session()
+# # db_sess.add(user)
+# db_sess.add(pare)
+# db_sess.commit()
+# for i in db_sess.query(testClass).all():
+#     print(i)
