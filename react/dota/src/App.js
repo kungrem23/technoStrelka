@@ -1,17 +1,17 @@
 import React, { useState,useRef } from "react";
-import ReactHTMLDatalist from "react-html-datalist";
 import './App.css'
-import footmg from './verst/Assets/logo.png';
-import supicon from './verst/Assets/icon.png';
 import Raspisanie from "./Raspisanie";
 import Redaction from "./Redaction.js";
-import { BrowserRouter , Route} from "react-router-dom";
+import { BrowserRouter,Routes,  Route,Link} from "react-router-dom";
+import Main from "./Main";
 const App = () => {
   return (
-   <BrowserRouter>  
-  <Raspisanie/>
-  <Route  exact path="/"  component={Raspisanie}/>
-        <Route path="/Redaction"  component={Redaction}/>
+   <BrowserRouter>
+   <Routes> 
+   <Route path="/" element={<Main/>}/>
+    <Route path="/Raspisanie" element={<Raspisanie/>}/>
+        <Route path="/Redaction"  element={<Redaction/>}/>
+        </Routes> 
      </BrowserRouter>
   )
 };

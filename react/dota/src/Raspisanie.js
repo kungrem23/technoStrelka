@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactHTMLDatalist from "react-html-datalist";
 import './App.css'
-import footmg from './verst/Assets/logo.png';
-import supicon from './verst/Assets/icon.png'
+import iconWhite from './verst/Assets/iconWhite.png';
+import logo from './verst/Assets/logo.png'
+import icon from './verst/Assets/icon.png'
 import axios from 'axios';
 import Redaction from './Redaction'
+import { Link } from "react-router-dom";
+import { BrowserRouter,Routes,  Route} from "react-router-dom";
 export default function Raspisanie() {
    // const [get,Setget] = useState({ data: [] })
    // const fetchBack = async () => {
@@ -13,11 +16,75 @@ export default function Raspisanie() {
         // Books result
        // Setget(result.data);
     //}
-    const changestr = () =>{
-       // window.location.href('http://localhost:3000/Redaction/');
-    console.log("en")
-    
+      const [sup,setSup] = useState("")
+      const [supers,setSuper] = useState("")
+      const [supm,setM] = useState("")
+      const [supt,setT] = useState("")
+      const [supl,setL] = useState("")
+      const [sups,setS] = useState("")
+      const sta = () =>{
+setSup(<div className="list1" class="BodyText" /*style="display:none;"*/>
+<div className="pairs">
+  <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+</div>
+<div className="pairs" /*style="margin-top: 20px"*/>
+  <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+</div>
+</div>)
       }
+      const stb = () =>{
+        setSuper(<div className="list2" >
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>)
+      }
+      const stc = () =>{
+        setM(<div className="list3" class="BodyText" /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">14.10-15.40 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>)
+      }
+      const std = () =>{
+        setT( <div className="list4"  /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+      </div>)
+      }
+      const ste = () =>{
+        setL( <div className="list5"  /*style="display:none;"*/>
+        <div className="pairs">
+          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
+        </div>
+        <div className="pairs" /*style="margin-top: 20px"*/>
+          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
+        </div>
+      </div>)
+      }
+      const [filt,setFilt] = useState("Фильтер")
+      const setIV = ()=>{
+       setFilt("ИВТ")
+      }
+      const setEK = ()=>{
+        setFilt("Экономика")
+       }
+       const setBus = ()=>{
+        setFilt("Бизнесс")
+       }
   return (
     <>
     <div className="App">
@@ -29,104 +96,65 @@ export default function Raspisanie() {
     <div className="HeaderBtn">
       <div className="filter">
         <button className="FilterBtn">
-          <pre className="FilterText">Фильтр</pre>
-          <img src="Assets/icon.png" alt=""/>
+          <pre className="FilterText" >{filt}</pre>
+          <img src={icon} alt=""/>
         </button>
         <div className="VariantsBtn">
-          <button> 
+          <button onClick={setIV}> 
             <pre className="FilterText">ИВТ</pre>
-            <img src="Assets/icon.png" alt=""/>
+            <img src={icon} alt=""/>
           </button>
-          <button>
-            <pre className="FilterText">Экономический</pre>
-            <img src="Assets/icon.png" alt=""/>
+          <button onClick={setEK}>
+            <pre className="FilterText" >Экономический</pre>
+            <img src={icon} alt=""/>
           </button>
-          <button>
+          <button onClick={setBus}>
             <pre className="FilterText">Бизнес-аналитика</pre>
-            <img src="Assets/icon.png" alt=""/>
+            <img src={icon} alt=""/>
           </button>
         </div></div>
-      <a className="FilterText" onClick={changestr} >Редактировать</a>
+        <Link to='/Redaction'>Редактировать</Link>
     </div>
     <br/>
 
     <div className="container">
 
-      <button className="WeekDay" /*</div>onclick="(document.getElementById('list1').style.display='block')"*/>
+      <button className="WeekDay" onClick={sta}>
         <pre className="BodyText">Понедельник</pre>
-        <img src="./verst/Assets/icon.png" alt=""/>
+        <img src={icon} alt=""/>
       </button>
-      <div className="list1" class="BodyText" /*style="display:none;"*/>
-        <div className="pairs">
-          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
-        </div>
-        <div className="pairs" /*style="margin-top: 20px"*/>
-          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
-        </div>
-      </div>
+      <div>{sup}</div>
 
-      <button className="WeekDay" /*onclick="(document.getElementById('list2').style.display='block')"*/>
+      <button className="WeekDay" onClick={stb}>
         <pre className="BodyText">Вторник</pre>
-        <img src="Assets/icon.png" alt=""/>
+        <img src={icon} alt=""/>
       </button>
-      <div className="list2" /*style="display:none;"*/>
-        <div className="pairs">
-          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
-        </div>
-        <div className="pairs" /*style="margin-top: 20px"*/>
-          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
-        </div>
-      </div>
+      <div>{supers}</div>
 
-      <button className="WeekDay" /*onClick="(document.getElementById('list3').style.display='block')"*/>
+      <button className="WeekDay" onClick={stc}>
         <pre className="BodyText">Среда</pre>
-        <img src="Assets/icon.png" alt=""/>
+        <img src={icon}alt=""/>
       </button>
-      <div className="list3" class="BodyText" /*style="display:none;"*/>
-        <div className="pairs">
-          <pre className="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
-        </div>
-        <div className="pairs" /*style="margin-top: 20px"*/>
-          <pre className="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
-        </div>
-        <div className="pairs" /*style="margin-top: 20px"*/>
-          <pre className="BodyText">14.10-15.40 Мат. анализ 107 ПЭ М.С.Шитова</pre>
-        </div>
-      </div>
+      <div>{supm}</div>
 
-      <button className="WeekDay" /*onclick="(document.getElementById('list4').style.display='block')"*/>
+      <button className="WeekDay" onClick={std}>
         <pre className="BodyText">Четверг</pre>
-        <img src="Assets/icon.png" alt=""/>
+        <img src={icon} alt=""/>
       </button>
-      <div className="list4"  /*style="display:none;"*/>
-        <div className="pairs">
-          <pre className="BodyText">8.40-10.10 Программирование 202 ИН И.И. Поляков</pre>
-        </div>
-        <div className="pairs" /*style="margin-top: 20px"*/>
-          <pre className="BodyText">9.40-11.10 ИT 402 ИЦЭ И.А.Иванов</pre>
-        </div>
-      </div>
+     <div>{supt}</div>
 
-      <button className="WeekDay" /*onclick="(document.getElementById('list5').style.display='block')"*/>
+      <button className="WeekDay"onClick={ste}>
         <pre className="BodyText">Пятница</pre>
-        <img src="Assets/icon.png" alt=""/>
+        <img src={icon} alt=""/>
       </button>
-      <div className="list5"  /*style="display:none;"*/>
-        <div className="pairs">
-          <pre className="BodyText">8.40-10.10 ИT 402 ИЦЭ И.А.Иванов</pre>
-        </div>
-        <div className="pairs" /*style="margin-top: 20px"*/>
-          <pre className="BodyText">10.30-12.00 Мат. анализ 107 ПЭ М.С.Шитова</pre>
-        </div>
-      </div>
 
-    </div>
-
+    <div>{supl}</div>
+</div>
   </main>
 
   <footer>
     <div className="FooterInfo">
-      <img src={footmg} alt=""/>
+      <img src={logo} alt=""/>
       <div className="FooterText">
         <p className="FooterText" >
           О команде<br/>

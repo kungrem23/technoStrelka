@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*----------header-a---------*/
+
+header{
+    background-color: #F15622;
+}
+
+/*----------body----------*/
+
+/*----------main----------*/
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F15622;
+}
+
+.Frame{
+    width: 740px;
+    height: 400px;
+
+    margin: 50px 0 80px;
+    /*padding: 10px 10px 20px;*/
+    background-color: #333333;
+
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+h1{
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 88px;
+	color: white;
+}
+
+.line{
+    border-bottom: 10px solid white;
+    border-radius: 5px;
+    width: 625px;
+    margin-top: 5px;
+    margin-left: 28%;
+}
+
+input[type="search"]::-ms-clear {
+    display: none;
+}
+input[type="search"]::-webkit-search-cancel-button { 
+    display: none;
+}
+
+.Frame a{
+    background-color: white;
+    color: #333333;
+
+    height: 56px;
+    padding: 0 100px;
+
+    border: none;
+    border-radius: 22px;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 36px;
+}
+
+.Frame a:hover{
+    background-color: #333333;
+    color: white;
+    border: 3px solid white;
+}
+
+/*----------Footer----------*/
+
+footer{
+    background-color: #292929;
+    padding: 30px 100px;
+    height: 300px;
+
+}
+.FooterText{
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 36px;
+	color: white;
+}
+.FooterInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+}
+.guesta{
+    background-color: white;
+    color: #333333;
+
+    height: 56px;
+    padding: 0 70px;
+    width: 200px;
+    margin-left:40%;
+    border: none;
+    border-radius: 22px;
+    text-decoration: none;
+
+    display: flex;
+    align-items:baseline;
+
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 36px;
+}
+.chooserole{
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 88px;
+	color: white;
+    
+
+}
+.metodist{
+    background-color: white;
+    color: #333333;
+text-align: center;
+    height: 56px;
+    padding: 0 70px;
+width: 200px;
+margin-left:40%;
+    border: none;
+    border-radius: 22px;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: normal;
+	font-size: 36px;
+}
